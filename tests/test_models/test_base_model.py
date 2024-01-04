@@ -7,7 +7,7 @@ from uuid import UUID
 import json
 import os
 import pycodestyle
-
+import pep8
 
 class test_basemodel(unittest.TestCase):
     """ """
@@ -19,6 +19,7 @@ class test_basemodel(unittest.TestCase):
         self.value = BaseModel
     """
     A class to test pep8 on base_model file"""
+
     def test_pycodestyle(self):
         """
         Test pep8 format
@@ -137,6 +138,7 @@ class test_basemodel(unittest.TestCase):
 class TestCodeFormat(unittest.TestCase):
     """
     A class to test pep8 on base_model file"""
+
     def test_pycodestyle(self):
         """
         Test pep8 format
