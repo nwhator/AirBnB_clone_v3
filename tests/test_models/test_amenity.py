@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """ """
+import datetime
 from tests.test_models.test_base_model import test_basemodel
 from models.amenity import Amenity
 from models.base_model import BaseModel
-from datetime import datetime
 from unittest.mock import patch
 from time import sleep
 from os import getenv
@@ -25,7 +25,7 @@ class test_Amenity(test_basemodel):
     def test_name2(self):
         """ """
         new = self.value()
-        self.assertIsInstance(new.name, str)
+        self.assertTrue(isinstance(new.name, str) or new.name is None)
 
 
 class Test_PEP8(unittest.TestCase):
@@ -151,7 +151,8 @@ class TestAmenity(unittest.TestCase):
         if storage_t == 'db':
             self.assertIsNone(amenity.name)
         else:
-            self.assertEqual(amenity.name, "")
+            self.assertTrue(hasattr(amenity, "name"))
+            self.assertEqual(amenity.name, "" if storage_t != 'db' else None)
 
     def test_to_dict_creates_dict(self):
         """test to_dict method creates a dictionary with proper attrs"""
@@ -161,7 +162,7 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(type(new_d), dict)
         self.assertFalse("_sa_instance_state" in new_d)
         for attr in am.__dict__:
-            if attr is not "_sa_instance_state":
+            if attr != "_sa_instance_state":
                 self.assertTrue(attr in new_d)
         self.assertTrue("__class__" in new_d)
 

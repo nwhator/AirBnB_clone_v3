@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """ """
+import datetime
+import time
 from models.base_model import BaseModel
 import unittest
-import datetime
-from uuid import UUID
+import models
+import unittest
 import json
 import os
 import pycodestyle
@@ -17,9 +19,10 @@ class test_basemodel(unittest.TestCase):
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
-    """
-    A class to test pep8 on base_model file"""
-
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
+   
+    """   A class to test pep8 on base_model file """
     def test_pycodestyle(self):
         """
         Test pep8 format
@@ -33,10 +36,14 @@ class test_basemodel(unittest.TestCase):
         """ """
         pass
 
+    def save(self):
+        self.updated_at = datetime.utcnow()
+        models.storage.save()
+    
     def tearDown(self):
         try:
             os.remove('file.json')
-        except FileNotFoundError:
+        except Exception:
             pass
 
     def test_default(self):
@@ -105,8 +112,13 @@ class test_basemodel(unittest.TestCase):
     def test_updated_at(self):
         """ Test that updated_at attribute is later than created_at """
         new = self.value()
-        self.assertEqual(type(new.updated_at), datetime.datetime)
-        self.assertTrue(new.updated_at > new.created_at)
+        self.assertIsInstance(new.updated_at, datetime.datetime)
+        created_at_before_save = new.created_at
+        time.sleep(0.001)
+        new.save()
+
+        reloaded_new = self.value(id=new.id)
+        self.assertTrue(reloaded_new.updated_at > created_at_before_save)
 
     def test_uuid(self):
         """
