@@ -25,7 +25,7 @@ class test_Amenity(test_basemodel):
     def test_name2(self):
         """ """
         new = self.value()
-        self.assertEqual(type(new.name), str)
+        self.assertIsInstance(new.name, str)
 
 
 class Test_PEP8(unittest.TestCase):
@@ -144,7 +144,7 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
         if storage_t == 'db':
-            self.assertEqual(amenity.name, None)
+            self.assertIsNone(amenity.name)
         else:
             self.assertEqual(amenity.name, "")
 
