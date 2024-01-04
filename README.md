@@ -7,7 +7,7 @@
 - **Web Framework:** Flask
 
 ## Team Members
-- **Your Team:** Promise Nwhator, Candice de Bruin
+- **Your Team:** [Promise Nwhator](https://github.com/nwhator), [Candice de Bruin](https://github.com/itsjustdice)
 
 ## Concepts
 - **Key Focus:** REST API, AirBnB clone
