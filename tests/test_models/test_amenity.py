@@ -106,11 +106,16 @@ class test_Amenity_BaseModel(unittest.TestCase):
 
     def test_str_method(self):
         """
-        Testin str magic method
+        Testing str magic method
         """
         inst = Amenity()
-        str_output = "[Amenity] ({}) {}".format(inst.id, inst.__dict__)
-        self.assertEqual(str_output, str(inst))
+        expected_output = "[Amenity] ({}) {}".format(inst.id, inst.__dict__)
+        actual_output = str(inst)
+        self.assertEqual(
+                expected_output,
+                actual_output,
+                f"Expected: {expected_output}\nActual: {actual_output}"
+                )
 
     @patch('models.storage')
     def test_save_method(self, mock_storage):
