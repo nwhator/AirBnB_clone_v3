@@ -12,10 +12,20 @@ class test_Place(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "Place"
         self.value = Place
+        self.city_id = kwargs.get('city_id', ''
+        self.description = kwargs.get('description', '')
+        self.number_rooms = kwargs.get('number_rooms', 0)
+        self.number_bathrooms = kwargs.get('number_bathrooms', 0)
+        self.max_guest = kwargs.get('max_guest', 0)
+        self.price_by_night = kwargs.get('price_by_night', 0)
+        self.latitude = kwargs.get('latitude', 0.0)
+        self.longitude = kwargs.get('longitude', 0.0)
+        self.amenity_ids = kwargs.get('amenity_ids', [])
 
     def test_city_id(self):
         """ """
         new = self.value()
+        print(f"city_id: {new.city_id}")
         self.assertEqual(type(new.city_id), str)
 
     def test_user_id(self):
