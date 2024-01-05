@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ """
-import datetime
+from datetime import datetime
 from tests.test_models.test_base_model import test_basemodel
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -25,7 +25,7 @@ class test_Amenity(test_basemodel):
     def test_name2(self):
         """ """
         new = self.value()
-        self.assertTrue(isinstance(new.name, str) or new.name is None)
+        self.assertEqual(new.name, "Amenity")
 
 
 class Test_PEP8(unittest.TestCase):
@@ -151,8 +151,8 @@ class TestAmenity(unittest.TestCase):
         if storage_t == 'db':
             self.assertIsNone(amenity.name)
         else:
-            self.assertTrue(hasattr(amenity, "name"))
-            self.assertEqual(amenity.name, "" if storage_t != 'db' else None)
+            self.assertIsInstance(amenity.name, str)
+            self.assertEqual(amenity.name, "")
 
     def test_to_dict_creates_dict(self):
         """test to_dict method creates a dictionary with proper attrs"""

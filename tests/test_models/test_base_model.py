@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ """
-import datetime
+from datetime import datetime, timedelta
 import time
 from models.base_model import BaseModel
 import unittest
@@ -20,7 +20,7 @@ class test_basemodel(unittest.TestCase):
         self.name = 'BaseModel'
         self.value = BaseModel
         self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow() + timedelta(microseconds=1)
    
     """   A class to test pep8 on base_model file """
     def test_pycodestyle(self):
@@ -107,12 +107,12 @@ class test_basemodel(unittest.TestCase):
     def test_created_at(self):
         """ """
         new = self.value()
-        self.assertEqual(type(new.created_at), datetime.datetime)
+        self.assertEqual(type(new.created_at), datetime)
 
     def test_updated_at(self):
         """ Test that updated_at attribute is later than created_at """
         new = self.value()
-        self.assertIsInstance(new.updated_at, datetime.datetime)
+        self.assertIsInstance(new.updated_at, datetime)
         created_at_before_save = new.created_at
         time.sleep(0.001)
         new.save()
