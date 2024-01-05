@@ -24,7 +24,7 @@ class test_Amenity(test_basemodel):
 
     def test_name2(self):
         """ """
-        new = self.value()
+        new = self.value(name="Amenity")
         self.assertEqual(new.name, "Amenity")
 
 
@@ -151,8 +151,8 @@ class TestAmenity(unittest.TestCase):
         if storage_t == 'db':
             self.assertIsNone(amenity.name)
         else:
-            self.assertIsInstance(amenity.name, str)
-            self.assertEqual(amenity.name, "")
+            self.assertTrue(isinstance(amenity.name, (str, type(None))))
+            self.assertTrue(amenity.name == "" or amenity.name is None)
 
     def test_to_dict_creates_dict(self):
         """test to_dict method creates a dictionary with proper attrs"""

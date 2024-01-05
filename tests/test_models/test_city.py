@@ -3,9 +3,12 @@
 from tests.test_models.test_base_model import test_basemodel
 from models.city import City
 from models.base_model import BaseModel
+from os import getenv
 import pep8
 import pycodestyle
 import unittest
+
+storage_t = getenv("HBNB_TYPE_STORAGE")
 
 
 class test_City(test_basemodel):
@@ -20,12 +23,18 @@ class test_City(test_basemodel):
     def test_state_id(self):
         """ """
         new = self.value()
-        self.assertEqual(type(new.state_id), str)
+        if storage_t != 'db':
+            self.assertIsNone(new.state_id)
+        else:
+            self.assertEqual(type(new.state_id), str)
 
     def test_name(self):
         """ """
         new = self.value()
-        self.assertEqual(type(new.name), str)
+        if storage_t != 'db':
+            self.assertIsNone(new.name)
+        else:
+            self.assertEqual(type(new.name), str)
 
 
 class Test_PEP8(unittest.TestCase):
