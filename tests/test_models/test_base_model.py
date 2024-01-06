@@ -73,6 +73,8 @@ class test_basemodel(unittest.TestCase):
         key = self.name + "." + i.id
         with open('file.json', 'r') as f:
             j = json.load(f)
+            print(f"j: {j}")
+            print(f"j.keys(): {j.keys()}")
             self.assertEqual(j[key], i.to_dict())
 
     def test_str(self):

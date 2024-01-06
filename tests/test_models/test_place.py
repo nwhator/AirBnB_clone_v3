@@ -10,9 +10,9 @@ class test_Place(test_basemodel):
     def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
-        self.name = "Place"
         self.value = Place
-        self.city_id = kwargs.get('city_id', ''
+        self.city_id = kwargs.get('city_id', '')
+        self.user_id = kwargs.get('user_id', '')
         self.description = kwargs.get('description', '')
         self.number_rooms = kwargs.get('number_rooms', 0)
         self.number_bathrooms = kwargs.get('number_bathrooms', 0)
@@ -21,6 +21,7 @@ class test_Place(test_basemodel):
         self.latitude = kwargs.get('latitude', 0.0)
         self.longitude = kwargs.get('longitude', 0.0)
         self.amenity_ids = kwargs.get('amenity_ids', [])
+        self.name = kwargs.get('name', '')
 
     def test_city_id(self):
         """ """
