@@ -15,7 +15,7 @@
 
 ## Learning Objectives
 - Understand REST, API, and CORS concepts.
-- Recognize HTTP methods for resource retrieval, creation, update, and deletion.
+- Identify HTTP techniques for accessing, establishing, modifying, and removing resources.
 - Familiarity with Flask, Flask Blueprints, and CORS implementation.
 
 ## Get Started
